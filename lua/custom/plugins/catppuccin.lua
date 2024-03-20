@@ -10,6 +10,7 @@ local packages = {
     opts = {
       flavour = 'macchiato',
       integrations = {
+        barbar = true,
         cmp = true,
         gitsigns = true,
         nvimtree = true,
