@@ -18,6 +18,7 @@ local plugins = {
       'ray-x/guihua.lua',
       'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',
+      'nvim-telescope/telescope.nvim',
     },
     config = function()
       require('go').setup {
@@ -29,6 +30,20 @@ local plugins = {
           enable = false,
         },
       }
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('gopls-lsp-attach', { clear = true }),
+        callback = function(event)
+          -- keymap to run go test over current function
+          vim.keymap.set('n', '<leader>tf', ':GoTestFunc<CR>', { buffer = event.buf, desc = 'LSP: [T]est current function' })
+
+          -- keymap to run all go tests
+          vim.keymap.set('n', '<leader>tt', ':GoTest<CR>', { buffer = event.buf, desc = 'LSP: [T]est everything' })
+
+          -- keymap to run go tests for current package
+          vim.keymap.set('n', '<leader>tp', ':GoTestPkg<CR>', { buffer = event.buf, desc = 'LSP: [T]est package' })
+        end,
+      })
     end,
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
