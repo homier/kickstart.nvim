@@ -1,13 +1,11 @@
 local packages = {
   {
-    'rmehri01/onenord.nvim',
+    'EdenEast/nightfox.nvim',
     priority = 1000,
     lazy = false,
     config = function()
-      require('onenord').setup {
-        options = {
-          theme = 'onenord',
-        },
+      require('nightfox').setup {
+        vim.cmd 'colorscheme carbonfox',
       }
     end,
   },

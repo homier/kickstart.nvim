@@ -42,6 +42,12 @@ local plugins = {
 
           -- keymap to run go tests for current package
           vim.keymap.set('n', '<leader>tp', ':GoTestPkg<CR>', { buffer = event.buf, desc = 'LSP: [T]est package' })
+
+          -- keymap to add go struct tags
+          vim.keymap.set('n', '<leader>gat', ':GoAddTag<CR>', { buffer = event.buf, desc = 'LSP: [G]o add tags' })
+
+          -- keymap to add go tests to current function
+          vim.keymap.set('n', '<leader>gtf', ':GoAddTest<CR>', { buffer = event.buf, desc = 'LSP: [G]o add function test' })
         end,
       })
     end,
