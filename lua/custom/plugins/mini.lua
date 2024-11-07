@@ -1,6 +1,9 @@
 local packages = {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    dependencies = {
+      'echasnovski/mini.statusline',
+    },
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -17,10 +20,11 @@ local packages = {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
+      -- -- Simple and easy statusline.
+      -- --  You could remove this setup call if you don't like it,
+      -- --  and try some other statusline plugin
       require('mini.statusline').setup()
+      require('mini.icons').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
