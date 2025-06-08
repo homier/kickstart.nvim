@@ -25,9 +25,9 @@ local plugins = {
         -- HACK: https://github.com/tigh-latte/dotfiles/blob/main/.config%2Fnvim%2Flua%2Ftigh-latte%2Fplugins%2Fgo.lua#L10-L15
         -- HACK: https://www.reddit.com/r/neovim/comments/1cygzip/upgraded_to_010_but_getting_lsp_codelens_issues/
         -- HACK: For now enabled gopls raises codelens errors
-        lsp_codelens = false,
+        lsp_codelens = true,
         lsp_inlay_hints = {
-          enable = false,
+          enable = true,
         },
       }
 

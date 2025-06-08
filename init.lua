@@ -136,7 +136,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-  { import = 'custom.plugins' },
+  { import = 'plugins' },
 }, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
