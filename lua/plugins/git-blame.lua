@@ -4,7 +4,7 @@ local packages = {
     config = function()
       require('gitblame').setup {
         enabled = true,
-        message_template = '<summary> • <author> • <date>',
+        message_template = '<date> * <summary> • <author>',
         message_when_not_committed = "Don't give a shit, huh?",
         date_format = '%c, %r',
       }
