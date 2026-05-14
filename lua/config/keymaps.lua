@@ -1,7 +1,5 @@
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- [[ Basic Keymaps ]]
+--  See `:help vim.keymap.set()`
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

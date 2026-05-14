@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   { -- Autoformat
     'stevearc/conform.nvim',
     opts = {
@@ -28,4 +28,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

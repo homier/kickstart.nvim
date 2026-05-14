@@ -1,3 +1,8 @@
+-- [[ Setting options ]]
+-- See `:help vim.opt`
+-- NOTE: You can change these options as you wish!
+--  For more options, you can see `:help option-list`
+
 -- Disable netrw module
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -58,3 +63,7 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+-- Load project-local config files (.nvim.lua, .nvimrc, .exrc).
+-- Run :trust in the project directory to authorize a file.
+vim.o.exrc = true

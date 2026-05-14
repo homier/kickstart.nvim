@@ -1,9 +1,6 @@
-local packages = {
+local plugins = {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
-    dependencies = {
-      'echasnovski/mini.statusline',
-    },
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -32,4 +29,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

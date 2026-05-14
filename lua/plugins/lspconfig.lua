@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -9,7 +9,7 @@ local packages = {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      'j-hui/fidget.nvim',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -142,24 +142,16 @@ local packages = {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            require('lspconfig')[server_name].setup {
-              cmd = server.cmd,
-              settings = server.settings,
-              filetypes = server.filetypes,
-              -- This handles overriding only values explicitly passed
-              -- by the server configuration above. Useful when disabling
-              -- certain features of an LSP (for example, turning off formatting for tsserver)
-              capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
-            }
-          end,
-        },
-      }
+      require('mason-lspconfig').setup()
+
+      -- Apply per-server overrides via the 0.11+ API. nvim-lspconfig ships
+      -- defaults under lsp/<name>.lua; vim.lsp.config merges on top.
+      for name, cfg in pairs(servers) do
+        cfg.capabilities = vim.tbl_deep_extend('force', {}, capabilities, cfg.capabilities or {})
+        vim.lsp.config(name, cfg)
+      end
     end,
   },
 }
 
-return packages
+return plugins

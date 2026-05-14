@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'amitds1997/remote-nvim.nvim',
     version = '*', -- Pin to GitHub releases
@@ -11,4 +11,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

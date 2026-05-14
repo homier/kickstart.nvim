@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'EdenEast/nightfox.nvim',
     priority = 1000,
@@ -11,4 +11,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

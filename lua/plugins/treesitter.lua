@@ -9,7 +9,7 @@ local ensure_installed = {
   'vimdoc',
 }
 
-local packages = {
+local plugins = {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
@@ -30,4 +30,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

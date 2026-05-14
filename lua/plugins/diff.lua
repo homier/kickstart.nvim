@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'esmuellert/vscode-diff.nvim',
     dependencies = { 'MunifTanjim/nui.nvim' },
@@ -6,4 +6,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

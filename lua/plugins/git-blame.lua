@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'f-person/git-blame.nvim',
     config = function()
@@ -12,4 +12,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

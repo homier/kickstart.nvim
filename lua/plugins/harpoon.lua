@@ -1,4 +1,4 @@
-local config = {
+local plugins = {
   {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
@@ -48,4 +48,4 @@ local config = {
   },
 }
 
-return config
+return plugins

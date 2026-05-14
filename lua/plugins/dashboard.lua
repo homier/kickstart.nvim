@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'nvimdev/dashboard-nvim',
     dependencies = {
@@ -13,4 +13,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

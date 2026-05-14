@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'greggh/claude-code.nvim',
     dependencies = {
@@ -10,4 +10,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

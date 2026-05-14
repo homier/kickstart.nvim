@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   {
     'rcarriga/nvim-dap-ui',
     dependencies = {
@@ -8,4 +8,4 @@ local packages = {
   },
 }
 
-return packages
+return plugins

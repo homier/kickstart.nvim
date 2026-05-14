@@ -1,4 +1,4 @@
-local packages = {
+local plugins = {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
@@ -6,4 +6,4 @@ local packages = {
   { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 }
 
-return packages
+return plugins

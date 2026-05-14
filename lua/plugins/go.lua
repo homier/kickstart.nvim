@@ -1,17 +1,4 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 local plugins = {
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        'gopls',
-      },
-    },
-  },
-
   {
     'ray-x/go.nvim',
     dependencies = { -- optional packages
@@ -20,6 +7,9 @@ local plugins = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-telescope/telescope.nvim',
     },
+    event = { 'CmdlineEnter' },
+    ft = { 'go', 'gomod' },
+    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
     config = function()
       require('go').setup {
         lsp_codelens = true,
@@ -31,37 +21,32 @@ local plugins = {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('gopls-lsp-attach', { clear = true }),
         callback = function(event)
-          -- keymap to run go test over current function
-          vim.keymap.set('n', '<leader>tf', ':GoTestFunc<CR>', { buffer = event.buf, desc = 'LSP: [T]est current function' })
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if not client or client.name ~= 'gopls' then
+            return
+          end
 
-          -- keymap to run all go tests
-          vim.keymap.set('n', '<leader>tt', ':GoTest<CR>', { buffer = event.buf, desc = 'LSP: [T]est everything' })
+          local map = function(keys, cmd, desc)
+            vim.keymap.set('n', keys, cmd, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
 
-          -- keymap to run go tests for current package
-          vim.keymap.set('n', '<leader>tp', ':GoTestPkg<CR>', { buffer = event.buf, desc = 'LSP: [T]est package' })
+          map('<leader>tf', ':GoTestFunc<CR>', '[T]est current function')
+          map('<leader>tt', ':GoTest<CR>', '[T]est everything')
+          map('<leader>tp', ':GoTestPkg<CR>', '[T]est package')
+          map('<leader>gat', ':GoAddTag<CR>', '[G]o add tags')
+          map('<leader>gtf', ':GoAddTest<CR>', '[G]o add function test')
+        end,
+      })
 
-          -- keymap to add go struct tags
-          vim.keymap.set('n', '<leader>gat', ':GoAddTag<CR>', { buffer = event.buf, desc = 'LSP: [G]o add tags' })
-
-          -- keymap to add go tests to current function
-          vim.keymap.set('n', '<leader>gtf', ':GoAddTest<CR>', { buffer = event.buf, desc = 'LSP: [G]o add function test' })
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = vim.api.nvim_create_augroup('GoFormat', { clear = true }),
+        pattern = '*.go',
+        callback = function()
+          require('go.format').goimport()
         end,
       })
     end,
-    event = { 'CmdlineEnter' },
-    ft = { 'go', 'gomod' },
-    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }
-
--- Run gofmt on save
-local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
-  callback = function()
-    require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
 
 return plugins
